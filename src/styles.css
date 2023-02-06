@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
+.subjectContainer{
+    width: 80%;
+    background: #cff7cf;
+    padding: 25px 10px;
+}

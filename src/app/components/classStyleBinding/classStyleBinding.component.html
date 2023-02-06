@@ -1,0 +1,45 @@
+<p>Class Style Binding Works</p>
+
+
+<div class="mainContainer">
+    <div class="leftContainer">
+        <p>NGCLASS BINDING</p>
+        <div class="box1" [style.margin]="myComponentMargin">BOX1</div>
+    
+    
+        <p>CLASS BINDING</p>
+        <div class="box2" [class.myExpandBox2]="isExpanded">BOX</div>
+    
+    
+        <p>ATTRIBUTE DIRECTIVE ngClass takes class name from css a string and ngStyle</p>
+        <div class="ngBox" [ngClass]="'first second third'"></div>
+        <div class="ngBox" [ngClass]=" ['first', 'second', 'third'] "></div>
+    
+    
+        <p>ngClass accept Object where key as class name in single quote and value a boolean</p>
+        <div class="ngBox2" [ngClass]=" {'first2': true, 'second2': isBorder, 'third2': false} "></div>
+    
+    
+        <p>ngClass accept ternary expression where Lift side takes condition and and right side takes class</p>
+        <div class="myBox3" [ngClass]="isExpandBox3 === true? 'expandedBox' : 'shrinkBox'"></div>
+    </div>
+    
+    <div class="rightContainer">
+        <p>NGSTYLE BINDING</p>
+    
+        <p>ngStyle accept object where as css property as a key in single quote and css value on value (right side) </p>
+    
+    
+        <span [ngStyle]="{'font-size': '50px'}">I m Shreyas Welcom to Angular Base</span>
+        <span [ngStyle]="{'font-size': isTextExpand ? '25px' : '10%'}">ngStyle using ternary Operator</span>
+    </div>
+</div>
+
+
+
+
+
+<hr>
+<hr>
+<hr>
+<hr>

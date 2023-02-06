@@ -1,0 +1,22 @@
+<p>Parrent Component:-  <b>Demostrate Component Communication!</b></p>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Parent Component</h5>
+                <p>Msg:- {{parentMsg}} </p>
+                <p>Msg from child:- {{childMsg}} </p>
+                <a class="btn btn-primary" (click)="sendMsg()">Send Data to Child</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <app-child-comp [childMsgVariable]="parentMsg" (dataEventEmitVariable)="parentFun($event)"></app-child-comp>
+        </div>
+    </div>
+</div>
+
+

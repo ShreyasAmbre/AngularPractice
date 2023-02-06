@@ -1,0 +1,35 @@
+<p>hostlist works!</p>
+
+
+
+<div style="width: 100vw; height: 100vh; background-color: antiquewhite;">
+
+    <b>HostListener and HostBinding are the concepts of Directives</b>
+    <b>Directive helps us to attach a specific behaviour to the DOM element</b>
+    <b>Types :- Component Directive (It has it own View File (.html file)), Structural Directive (ngIf, ngFor, ngSwitch) , Attribute Directive (ngClass, ngStyle)</b>
+    <b>@HostListener are used to capture the event of the HostElement to handle a specific functionality after the event is trigger as per requirements</b>
+    <b>HostElement means :- The element on which the custom attribute directive is applied is know as HostElement </b>
+
+    <br><br>
+
+    <b>Click on the component to get trigger HostListener Event as This is directly attached to component and Component is also a directive in itself</b>
+
+    <br><br><br>
+
+
+
+    <div>
+        <b>Here on below div @HostListener is attached using Custom Attribute Directive</b>
+
+        <div #myCard class="card" style="width: 18rem;" appChangeBg [templateRefVar]="myCard">
+            <!-- <img class="card-img-top" src="" alt="Card image cap"> -->
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Click Me</a>
+            </div>
+          </div>
+    </div>
+    
+</div>
+

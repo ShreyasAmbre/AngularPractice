@@ -1,0 +1,63 @@
+<p class="title">About Works</p>
+
+<b>Here as we have 4 products most of the content inside each product is same only few content is different in this scenario we use NgContent</b>
+<p>This result is reducing creating multiple components</p>
+<p>Code Duplication is reduce and Component is reused </p>
+<p>We can pass different data</p>
+<div>
+    <!-- <app-ngcontent-laptop></app-ngcontent-laptop><br>
+
+    <app-ngcontent-tv></app-ngcontent-tv><br>
+
+    <app-ngcontent-mobile></app-ngcontent-mobile><br>
+
+    <app-ngcontent-camera></app-ngcontent-camera><br> -->
+
+
+
+
+    <app-ngcontent-mycard>
+      <h5 class="card-title">Laptop</h5>
+      <a href="#" class="btn btn-primary">Know More Laptop Details</a>
+    </app-ngcontent-mycard>
+
+    <app-ngcontent-mycard>
+        <h5 class="card-title">Mobile</h5>
+        <a href="#" class="btn btn-primary">Know More Mobile Details</a>
+    </app-ngcontent-mycard>
+
+    <app-ngcontent-mycard>
+        <h5 class="card-title">TV</h5>
+      <a href="#" class="btn btn-primary">Know More TV Details</a>
+
+    </app-ngcontent-mycard>
+
+    <app-ngcontent-mycard>
+        <h5 class="card-title">Camera</h5>
+      <a href="#" class="btn btn-primary">Know More Camera Details</a>
+    </app-ngcontent-mycard>
+
+
+
+
+    <b>NGContainer :- As we know we have mutiple structural directive such as ngIf, ngFor, ngSwitch if their is a scenario like below</b>
+    <p>
+        We want to use all the three structral directive at same time we cant bind them on a single div to avoid this we will add two more div 
+        but this will disturb the design and this approach is not good 
+    </p>
+    <br>
+    <p>
+        To avoid this we use "ng-container" angular tag
+    </p>
+
+    <ng-container *ngIf="isVisibleProducts">
+        <ng-container  *ngFor="let pro of products">
+            <app-ngcontent-mycard>
+                <h5 class="card-title">{{pro.name}}</h5>
+              <a href="#" class="btn btn-primary">{{pro.btnTxt}} Details</a>
+            </app-ngcontent-mycard>
+        </ng-container>
+    </ng-container>
+    
+
+</div>

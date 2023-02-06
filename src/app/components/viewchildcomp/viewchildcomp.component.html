@@ -1,0 +1,29 @@
+<p>viewchildcomp works!</p>
+
+<b>@ViewChild() this decorator is helps us to manipulate and modify the element preent in view file (.html)</b>
+<ul>
+    <li>Using Template Reference Varibale #templateRefVariableInputVal</li>
+    <li>Using Element Ref which will use in component file (.ts)</li>
+</ul>
+
+<input type="text" #templateRefVariableInputVal> &nbsp;&nbsp;&nbsp;
+<button (click)="printValue()">Print Value</button>
+<br><br><br>
+
+
+<b>Here now we will check how to access property of the child component and</b>
+<b>How to trigger method of child component from a parent component using @viewChild() decorator</b>
+
+<app-child-comp #templeteRefVarChildComp></app-child-comp>
+
+<button (click)="printChildProperty()">Print Child Property in Console</button>
+
+
+<br><br>
+<button (click)="triggerChildMethod()">Trigger Child Method</button>
+
+
+
+
+
+

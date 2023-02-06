@@ -1,0 +1,7 @@
+<p>pone works!</p>
+
+
+
+<b>Sending data from Parent to child :- Where as <i>msgFromParent is child property assign to @Input Decorator & sendMsgtoChild is parent property </i></b>
+<b>Both are assign to each other as a Property Binding on Child Seelctor</b>
+<app-cone [msgfromParent]="sendMsgtoChild"  (childPropert)="parentFnForChildEventCatching($event)"></app-cone>

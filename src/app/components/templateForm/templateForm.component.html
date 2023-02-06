@@ -1,0 +1,27 @@
+<p class="title">Template Driven Form</p>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-5">
+            <form  (ngSubmit)="submitForm(loginForm)" #loginForm="ngForm">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email" ngModel name="email" required email>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" 
+                        ngModel name="pass" required>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <br><br>
+                <div *ngIf="loginForm.status === 'INVALID'" class="p-2 mb-1 rounded alert alert-danger">InValid Input</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

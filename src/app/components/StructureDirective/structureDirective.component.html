@@ -1,0 +1,53 @@
+<p class="txtDecor">Structure Directive Works</p>
+
+<b>This example demonstrate:- simple *ngIF</b>
+<p *ngIf="isVisible">This will display if ngIf Condition is TRUE</p>
+
+
+
+<b>THIS BELOW EXAMPLE demonstrate:- *ngIF=isVisibile; else elseContainer</b>
+<ng-container *ngIf="isVisible; else elseContainer">
+    <p>This is display if ngIf Condition is TRUE in ngIF; Else Directive </p>
+</ng-container>
+<ng-template #elseContainer>
+    <p>This is display if ELSE Condition is TRUE in ngIF; Else Directive </p>
+</ng-template>
+
+
+
+<b>Below example demonstrate:- ngSwitch,  ngSwitchCase, ngSwitchDefault</b>
+<ng-container [ngSwitch] = "day">
+    <div *ngSwitchCase = 0>Today is Sunday! You deserve a break</div>
+    <div *ngSwitchCase = '1'><h3>Today is Monday, Hope you have productive Week</h3></div>
+    <div *ngSwitchCase = '2'><h3>Today is Tuesday, Smash your Goals</h3></div>
+    <div *ngSwitchCase = '3'><h3>Today is Wednesday, You're already half way through</h3></div>
+    <div *ngSwitchCase = '4'><h3>Today is Thursday, It's like Friday Lite</h3></div>
+    <div *ngSwitchCase = '5'><h3>Today is Friday, TGIF!!!</h3></div>
+    <div *ngSwitchCase = '6'><h3>Today is Saturday, Let's Party!! :) </h3></div>
+    <div *ngSwitchDefault>Uh oh! Somethings wrong</div>
+</ng-container>
+
+<b>Change the Value as per Selection using ngSwitch</b>
+<div>
+    <select (change)="getProduct($event)">
+        <option value="Laptop">Laptop</option>
+        <option value="Desktop">Desktop</option>
+        <option value="Mobile">Mobile</option>
+    </select>
+</div>
+<ng-container [ngSwitch]="selectedProduct">
+    <p *ngSwitchCase="'Laptop'">Laptop is selected</p>
+    <p *ngSwitchCase="'Desktop'">Desktop is selected</p>
+    <p *ngSwitchCase="'Mobile'">Mobile is selected</p>
+    <p *ngSwitchDefault>Please Select Product</p>
+</ng-container>
+
+
+<b>*ngFor Directive mainly used to display the item present in collection like Arrays</b>
+<b>*ngFor demonstrate below:- *ngFor="let item of data"</b>
+<ng-container *ngFor="let item of data">
+    <p>{{ item }}</p>
+</ng-container>
+
+
+

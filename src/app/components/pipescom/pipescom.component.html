@@ -1,0 +1,27 @@
+<h3 class="title">{{comtitle | titlecase}}</h3>
+
+
+<b>lowercase pipe is implemented on this example</b>
+<p>{{title | lowercase}}</p>
+
+
+
+<b>Slice pipe is used property_name | slice: starting_index: ending_index  </b>
+<p>{{title | slice:2}}</p>
+<p>{{title | slice: 2 : 12}}</p>
+
+
+
+
+<b>Date pipe is used to trasnform date in proper format as per requirements</b>
+<p>{{myDate}}    this is orginal value of date property </p>
+<p>{{myDate | date}}    <b>here only date pipe is use with no parameter</b> </p>
+<p>{{myDate | date:'short'}}    <b>here only date pipe is use with 'short' parameter</b>  </p>
+<p>{{myDate | date:'medium'}}    <b>here only date pipe is use with  'medium' parameter</b></p>
+<p>{{myDate | date:'fulldate'}}    <b>here only date pipe is use with 'fulldate' parameter</b> </p>
+
+
+
+<b>Custom Pipes 'commasepratenum' this custom pipe will trasform the property value in comma seprated value </b>
+<p>Rs :- {{rupees | commasepratenum: 'number'}}</p>
+<p>Rs :- {{rupeesString | commasepratenum: 'string'}}</p>

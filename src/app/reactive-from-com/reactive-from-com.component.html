@@ -1,0 +1,222 @@
+<h2>Reactive Form</h2>
+
+<div style="display: flex; justify-content: space-around;">
+    <button type="button" class="btn btn-primary btn-lg" (click)="showWorkingContainer = 'reactiveTheory'">Reactive Form Theory</button>
+    <button type="button" class="btn btn-primary btn-lg" (click)="showWorkingContainer = 'reactivePractical'">Reactive Form Practical</button>
+</div>
+
+<ng-container *ngIf="showWorkingContainer === 'reactiveTheory'">
+    <b>Reactive Form Theort</b>
+    <ul>
+        <li>Most of the logic reside in component class. But in template drive from most of code reside in HTMl template </li>
+        <li>
+            No two binding in Reactive Form. In Reactive form we need to react to user inputs to update the value. 
+            Angular alsoprovide methods to update form control value from the component class 
+        </li>
+        <li>Reactive Form are well suited for complex scenarios:- Scenarios are :- 
+            <ul>
+                <li>When we want form field to be dynamic. 
+                    eg:- If want to allow user to enter the phone number and also allow user to add one more input field to 
+                    add one more alternate phone numbers
+                </li>
+                <li>When we want to have some custom validation on certain form fields. eg. Password field, confirm password validation</li>
+                <li>Dynamic Validation. eg:- let see if we want to subscribe to updates then email field to be mandatory, 
+                    if user doesnt want to subscribe then email field is optional
+                </li>
+                <p><b>Note:- </b> For this complex scenarios Reactive Forms is perfect choice.</p>
+            </ul>
+        </li>
+        <li>Reactive Form also makes it possible to Unit Test since your logic is in your typescript file in the component class </li>
+    </ul>
+    
+    
+    <h4>Steps to create Reactive Form</h4>
+    <ul>
+        <li>CLI generate project</li>
+        <li>Add Form in HTML</li>
+        <li>Create a Form Model in component file</li>
+        <li>Manage the form control value</li>
+        <li>FormBuilder Service</li>
+        <li>(Once the exchange of data started happing we will start)</li>
+        <li>Validation - (Simple, Custom, Cross-Field & Dynamic)</li>
+        <li>Dynamic Form Controls</li>
+    </ul>
+
+</ng-container>
+
+<ng-container *ngIf="showWorkingContainer === 'reactivePractical'">
+    <b>Reactive Form Practicals</b><br><br>
+    {{registrationForm.value | json}}
+
+
+    <div class="container">
+        <!-- REACTIVE FORM using FORMGROUP START -->
+        <div class="row justify-content-md-center">
+            <div class="col-4">
+                <h5 style="display: flex; justify-content: center;">Registration Form (using FORM GROUP)</h5>
+                <form [formGroup]="registrationForm">
+                    <div class="form-group">
+                      <label>Username</label>
+                      <input type="email" formControlName="username" class="form-control" placeholder="Enter Username">
+                    </div><br>
+                    <div class="form-group">
+                      <label >Password</label>
+                      <input type="password" formControlName="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Password">
+                    </div><br>
+
+
+                    <div formGroupName="address">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" formControlName="state" class="form-control" placeholder="Enter State">
+                        </div>
+
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" formControlName="city" class="form-control" placeholder="Enter city">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" formControlName="pincode" class="form-control" placeholder="Enter pincode">
+                        </div>
+                    </div> <br>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+
+
+                </div>
+                <div class="col-4 mt-2">
+                    <div class="row">
+                        <button type="button" (click)="setFormData()" class="btn btn-primary mt-5">Set Value using setValue() Reactive Method</button>
+                    </div><br>
+                    <div class="row">
+                        <span><b>Note:- </b>When using setValue() method we can not assign only single value it is mandatory to assign every value of form fields</span>
+                        <br>
+                        <b>To overcome this we use patchValue() Reactive Form Method</b>
+                    </div>
+                    <div class="row">
+                        <button type="button" (click)="patchSingleValue()" class="btn btn-primary mt-5">Set Single Value using patchValue() Reactive Method</button>
+                    </div>
+                </div>
+        </div>
+        <!-- REACTIVE FORM using FORMGROUP END -->
+
+        <hr>
+        <span><b>Note:- </b> Motive to to use Form Builder to create Reactive Form is it helps to have clean code as compare to Form Group approach (functionality is same as Form Group)</span>
+        <hr>
+
+
+        <!-- REACTIVE FORM using FORMBUILDER START -->
+        <div class="row justify-content-md-center">
+            <div class="col-4">
+                <h5 style="display: flex; justify-content: center;">Registration Form (using FormBuilder)</h5>
+                <form [formGroup]="fbregistrationForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label>Username</label>
+                      <input type="email" formControlName="fbusername" class="form-control" placeholder="Enter Username" 
+                      [class.is-invalid]=" fbregistrationForm.get('fbusername')?.invalid && 
+                      fbregistrationForm.get('fbusername')?.touched">
+
+                      <!-- SIMPLE VALIDATION of REACTIVE FORM -->
+                      <div *ngIf="fbregistrationForm.get('fbusername')?.invalid && fbregistrationForm.get('fbusername')?.touched">
+                        <small class="text-danger" *ngIf="fbregistrationForm.get('fbusername')?.errors?.required"><b>Username is required</b></small>
+                        <small class="text-danger" *ngIf="fbregistrationForm.get('fbusername')?.errors?.minlength"><b>Minimum 3 characters required</b></small>
+                      </div>
+                      
+                    </div><br>
+                    <div class="form-group">
+                      <label >Password</label>
+                      <input type="password" formControlName="fbpassword" class="form-control" placeholder="Password">
+
+                      <div *ngIf="fbregistrationForm.get('fbpassword')?.invalid && fbregistrationForm.get('fbpassword')?.touched">
+                        <small class="text-danger" *ngIf="fbregistrationForm.get('fbpassword')?.errors?.required"><b>Password is required</b></small>
+                        <small class="text-danger" *ngIf="fbregistrationForm.get('fbpassword')?.errors?.inValidPassword"><b>Password should contain symbols, numbers & 6-12 Characters</b></small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" formControlName="fbconfirmpassword" class="form-control" placeholder="Confirm Password">
+                        <small class="text-danger" *ngIf="fbregistrationForm.errors?.misMatch"><b>Password & Confirm Password does not match</b></small>
+                    </div><br>
+
+                    <div class="form-group mb-2">
+                        <label>Email</label>
+                        <input type="email" formControlName="fbemail" class="form-control" placeholder="Enter Email">
+                        <small *ngIf="fbregistrationForm.get('fbemail')?.errors?.required" class="text-danger"><b>Email is required for subscribtion</b></small>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" formControlName="fbsubscribe"><span> &nbsp;Subscribe to newsletter</span> 
+                    </div><br>
+
+                    <div class="form-group">
+                        <label>Contact No.</label>
+                        <input type="tel" formControlName="fbcontactno" class="form-control" placeholder="Contact No.">
+                        <div *ngIf="fbregistrationForm.get('fbcontactno')?.invalid && fbregistrationForm.get('fbcontactno')?.touched">
+                            <small class="text-danger" *ngIf="fbregistrationForm.get('fbcontactno')?.errors?.required"><b>Contact Number is required</b></small>
+                            <small *ngIf="fbregistrationForm.get('fbcontactno')?.errors?.inValidContact" class="text-danger"><b>Enter Country Code</b></small>
+                        </div>
+                    </div><br>
+
+
+
+                    <div formGroupName="fbaddress">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" formControlName="fbstate" class="form-control" placeholder="Enter State">
+                        </div>
+
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" formControlName="fbcity" class="form-control" placeholder="Enter city">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pincode</label>
+                            <input type="text" formControlName="fbpincode" class="form-control" placeholder="Enter pincode">
+                        </div>
+                    </div> <br>
+                    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+
+
+                </div>
+                <div class="col-4 mt-2">
+                    <div class="row">
+                        <button type="button" (click)="fbsetFormData()" class="btn btn-primary mt-5">Set Value using setValue() Reactive Method</button>
+                    </div><br>
+                    <div class="row">
+                        <span><b>Note:- </b>When using setValue() method we can not assign only single value it is mandatory to assign every value of form fields</span>
+                        <br>
+                        <b>To overcome this we use patchValue() Reactive Form Method</b>
+                    </div>
+                    <div class="row">
+                        <button type="button" (click)="fbpatchSingleValue()" class="btn btn-primary mt-5">Set Single Value using patchValue() Reactive Method</button>
+                    </div>
+                </div>
+        </div>
+        <!-- REACTIVE FORM using FORMBUILDER END-->
+    </div>
+    
+
+
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+    <br><br>
+</ng-container>    
